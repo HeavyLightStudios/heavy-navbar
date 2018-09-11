@@ -22,10 +22,7 @@ staging:
     only:
         refs:
         - tags
-        variables:
-        - $NPM_KEY
-    except:
-    - master@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
+        - develop@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
 
 production:
     stage: deploy
@@ -37,7 +34,4 @@ production:
     only:
         refs:
         - tags
-        variables:
-        - $NPM_KEY
-    except:
-    - develop@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
+        - master@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
