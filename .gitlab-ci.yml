@@ -12,6 +12,18 @@ test:
     script:
     - npm run test
 
+staging:
+    stage: deploy
+    script:
+    - npm version from-git
+    - npm run build
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
+    - npm publish --tag beta
+    only:
+    - tags
+    - triggers
+    - develop@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
+
 production:
     stage: deploy
     script:
@@ -22,3 +34,4 @@ production:
     only:
     - tags
     - triggers
+    - master@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
