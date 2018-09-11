@@ -1,7 +1,7 @@
 image: node:latest
 
 before_script:
-- npm install
+- npm install --from-lock-file
 
 #cache:
 #    paths:
@@ -20,8 +20,9 @@ staging:
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - npm publish --tag beta
     only:
-        refs:
-        - develop
+    - tags
+    except:
+    - /^(?!.*(develop)$).*$/
 
 production:
     stage: deploy
@@ -31,5 +32,7 @@ production:
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - npm publish
     only:
-        refs:
-        - master
+    - tags
+    except:
+    - /^(?!.*(master)$).*$/
+
