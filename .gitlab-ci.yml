@@ -1,9 +1,5 @@
 image: node:8
 
-stages:
-- test
-- deploy
-
 before_script:
 - npm install
 
@@ -12,16 +8,17 @@ cache:
     - node_modules/
 
 test:
+    stage: test
     script:
     - npm run test
 
-publish:release
-stage: deploy
-    only:
-    - tags
-    - triggers
+production:
+    stage: deploy
     script:
     - npm version from-git
     - npm run build
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - npm publish
+    only:
+    - tags
+    - triggers
