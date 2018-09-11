@@ -21,7 +21,7 @@ staging:
     - npm publish --tag beta
     only:
         refs:
-        - triggers
+        - develop
 
 production:
     stage: deploy
@@ -32,4 +32,4 @@ production:
     - npm publish
     only:
         refs:
-        - triggers
+        - master
