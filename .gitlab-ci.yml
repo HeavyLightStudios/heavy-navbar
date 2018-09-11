@@ -20,9 +20,12 @@ staging:
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - npm publish --tag beta
     only:
-    - tags
-    - triggers
-    - develop@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
+        refs:
+        - tags
+        variables:
+        - $NPM_KEY
+    except:
+    - master@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
 
 production:
     stage: deploy
@@ -32,6 +35,9 @@ production:
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - npm publish
     only:
-    - tags
-    - triggers
-    - master@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
+        refs:
+        - tags
+        variables:
+        - $NPM_KEY
+    except:
+    - develop@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
