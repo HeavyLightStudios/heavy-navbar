@@ -22,7 +22,8 @@ staging:
     only:
     - tags
     except:
-    - /^(?!.*(develop)$).*$/
+    - /^(?!develop).+@/
+
 
 production:
     stage: deploy
@@ -34,5 +35,6 @@ production:
     only:
     - tags
     except:
-    - /^(?!.*(master)$).*$/
+    - /^(?!master).+@/
+
 
