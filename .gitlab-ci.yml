@@ -7,7 +7,7 @@ cache:
 build:
     stage: build
     script:
-      - npm install --from-lock-file
+      - npm install
 
 test:
     stage: test
@@ -17,26 +17,26 @@ test:
 staging:
     stage: deploy
     script:
-    - npm version from-git
+    - npm version from-git --force
     - npm run build
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - npm publish --tag beta
     only:
     - tags
     except:
-    - /.*(?<!-develop)$/i
+    - /.*(?<!develop)$/i
 
 
 production:
     stage: deploy
     script:
-    - npm version from-git
+    - npm version from-git --force
     - npm run build
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - npm publish
     only:
     - tags
     except:
-    - /.*(?<!-master)$/i
+    - /.*(?<!master)$/i
 
 
