@@ -1,11 +1,13 @@
 image: node:latest
 
-before_script:
-- npm install --from-lock-file
+cache:
+    paths:
+    - node_modules/
 
-#cache:
-#    paths:
-#    - node_modules/
+build:
+    stage: build
+    script:
+      - npm install --from-lock-file
 
 test:
     stage: test
@@ -22,7 +24,7 @@ staging:
     only:
     - tags
     except:
-    - /^(?!develop).+@/
+    - /.*(?<!-develop)$/i
 
 
 production:
@@ -35,6 +37,6 @@ production:
     only:
     - tags
     except:
-    - /^(?!master).+@/
+    - /.*(?<!-master)$/i
 
 
