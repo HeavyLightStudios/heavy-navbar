@@ -9,34 +9,31 @@ build:
     script:
       - npm install
 
+setNextRelease:
+    stage: build
+    script:
+    - $NPM_TAG = "next"
+    only:
+    - develop
+
+setLatestRelease:
+    stage: build
+    script:
+    - $NPM_TAG = "latest"
+    only:
+    - master
+
+
 test:
     stage: test
     script:
     - npm run test
 
-staging:
+release:
     stage: deploy
-    script:
-    - npm version from-git --force
-    - npm run build
-    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
-    - npm publish --tag beta
     only:
-    - tags
-    except:
-    - ^(?!.*\bmaster\b).*$
-
-
-production:
-    stage: deploy
+        - tags
     script:
-    - npm version from-git --force
-    - npm run build
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
-    - npm publish
-    only:
-    - tags
-    except:
-    - ^(?!.*\bdevelop\b).*$
-
+    - npm publish --tag $NPM_TAG
 
