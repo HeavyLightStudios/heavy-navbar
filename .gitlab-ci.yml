@@ -9,21 +9,6 @@ build:
     script:
       - npm install
 
-setNextRelease:
-    stage: build
-    script:
-    - $NPM_TAG = "next"
-    only:
-    - develop
-
-setLatestRelease:
-    stage: build
-    script:
-    - $NPM_TAG = "latest"
-    only:
-    - master
-
-
 test:
     stage: test
     script:
