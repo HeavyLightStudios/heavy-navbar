@@ -70,10 +70,9 @@ a, ::slotted(a) {
   color: var(--heavy-navbar-color);
   display: block;
   font-size: 0.7em;
-  height: calc(var(--heavy-navbar-height) - 10px);
+  height: var(--heavy-navbar-height);
   letter-spacing: 1px;
-  margin: 0 20px;
-  padding: 0 4px;
+  padding: 0 24px;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
@@ -212,6 +211,7 @@ a:hover:after, ::slotted(a:hover:after) {
   text-transform: uppercase;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
+  width: 100%;
 }
 
 .overlay-menu li a:hover,
