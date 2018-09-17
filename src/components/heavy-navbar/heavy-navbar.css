@@ -1,9 +1,9 @@
 :host {
     /* General Navbar */
-    --heavy-navbar-background: #a500a5;
-    --heavy-navbar-color: #ffffff;
-    --heavy-navbar-hover-color: #aaaaaa;
-    --heavy-navbar-height: 88px;
+    --heavy-navbar-background: #EAF1F3;
+    --heavy-navbar-color: #46444B;
+    --heavy-navbar-hover-color: #CC95F3;
+    --heavy-navbar-height: 80px;
 
     /* Menu Items */
     --heavy-navbar-text-transform: uppercase;
