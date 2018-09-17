@@ -1,37 +1,24 @@
-image: node:8
+image: node:latest
 
-before_script:
-- npm install
+cache:
+    paths:
+    - node_modules/
 
-#cache:
-#    paths:
-#    - node_modules/
+build:
+    stage: build
+    script:
+      - npm install
 
 test:
     stage: test
     script:
     - npm run test
 
-staging:
+release:
     stage: deploy
-    script:
-    - npm version from-git
-    - npm run build
-    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
-    - npm publish --tag beta
     only:
-    - tags
-    - triggers
-    - develop@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
+        - tags
+    script:
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
+    - npm publish --tag $NPM_TAG
 
-production:
-    stage: deploy
-    script:
-    - npm version from-git
-    - npm run build
-    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
-    - npm publish
-    only:
-    - tags
-    - triggers
-    - master@HeavyLightStudios/HLSWebComponents/Heavy-Navbar
