@@ -1,5 +1,6 @@
-import {Component, Listen, Prop, State} from '@stencil/core';
-import {MenuItem} from './interfaces/menuItem';
+import { Component, Listen, Prop, State } from '@stencil/core';
+import { MenuItem } from './interfaces/menuItem';
+
 
 @Component({
 	tag: 'heavy-navbar',
@@ -13,10 +14,15 @@ export class HeavyNavbar {
 	@State() overlayMenu: HTMLElement;
 	@State() desktopMenu: HTMLElement;
 	@State() mobileMenu: HTMLElement;
+	@State() navElement: HTMLElement;
 
 	@Prop({reflectToAttr: true}) menuItems: string = null;
 	@Prop({reflectToAttr: true}) itemCount: number;
 	@Prop({reflectToAttr: true}) logo: string = null;
+	@Prop({reflectToAttr: true}) position: string = 'fixed';
+
+	private lastScrollState: number = 0;
+	private fixedScroll: boolean = false;
 
 	componentWillLoad() {
 		this.innerMenuItems = JSON.parse(this.menuItems);
@@ -24,6 +30,50 @@ export class HeavyNavbar {
 
 	componentDidLoad() {
 		this.moveMenu();
+		this.setActiveMenuItem();
+
+		// Set Navbar Set
+		switch (this.position) {
+			case 'fixed':
+				this.navElement.style.position = 'fixed';
+				break;
+			case 'fixed-scroll':
+				this.navElement.style.position = 'fixed';
+				this.navElement.style.webkitTransition = "transform 0.2s ease-out";
+				this.navElement.style.transition = "transform 0.2s ease-out";
+				this.navElement.style.transform = 'translateY(0%)';
+				this.fixedScroll = true;
+				break;
+			case 'scroll':
+				this.navElement.style.position = 'absolute';
+				break;
+			default:
+				throw new Error("Position information is invalid. Can be set to: 'fixed', 'fixed-scroll', 'scroll'");
+		}
+	}
+
+	render() {
+		return ([
+			<nav ref={(element: HTMLElement) => this.navElement = element}>
+				<div class={"navbar-wrapper"}>
+					{this.createLogo()}
+					<ul id={"desktop-menu"} ref={(element: HTMLElement) => this.desktopMenu = element}>
+						{this.createMenuItems()}
+					</ul>
+					<div ref={(element: HTMLElement) => this.menuIcon = element} class={"menuIcon"}
+						 onClick={() => this.toggleMobileMenu()}>
+						<span class={"bar1"} />
+						<span class={"bar2"} />
+						<span class={"bar3"} />
+					</div>
+				</div>
+			</nav>,
+			<div class={"overlay-menu"} ref={(element: HTMLElement) => this.overlayMenu = element}>
+				<ul id={"mobile-menu"} ref={(element: HTMLElement) => this.mobileMenu = element}>
+
+				</ul>
+			</div>
+		]);
 	}
 
 
@@ -32,11 +82,11 @@ export class HeavyNavbar {
 
 		if (this.menuItems != null) {
 			this.innerMenuItems.map(menuItem => {
-				htmlItems.push(<li><a href={menuItem.url}>{menuItem.name}</a></li>)
+				htmlItems.push(<li><a href={menuItem.url} onClick={ (event: UIEvent) => this.menuClick(event)}>{menuItem.name}</a></li>)
 			});
 		} else {
 			for (var i = 0; i < this.itemCount; i++) {
-				htmlItems.push(<li>
+				htmlItems.push(<li onClick={ (event: UIEvent) => this.menuClick(event)}>
 					<slot name={'item-' + (i + 1)}/>
 				</li>)
 			}
@@ -66,6 +116,25 @@ export class HeavyNavbar {
 		}
 	}
 
+	menuClick(ev) {
+		var activeElements = document.getElementsByClassName('active');
+		for(var i = 0; i < activeElements.length; i++) {
+			activeElements[i].classList.remove('active');
+		}
+		ev.srcElement.classList.add('active');
+	}
+
+	setActiveMenuItem() {
+		var url = document.location.href;
+		var menuItems = document.getElementsByTagName('a');
+		for (var i = 0; i < menuItems.length; i++) {
+			var anchorMenuItem = menuItems[i] as HTMLAnchorElement;
+			if(anchorMenuItem.href == url) {
+				menuItems[i].classList.add('active');
+			}
+		}
+	}
+
 	@Listen('window:resize')
 	moveMenu() {
 		if (window.innerWidth <= 638 && this.desktopMenu.children.length != 0) {
@@ -82,27 +151,22 @@ export class HeavyNavbar {
 		}
 	}
 
-	render() {
-		return ([
-			<nav>
-				<div class={"navbar-wrapper"}>
-					{this.createLogo()}
-					<ul id={"desktop-menu"} ref={(element: HTMLElement) => this.desktopMenu = element}>
-						{this.createMenuItems()}
-					</ul>
-					<div ref={(element: HTMLElement) => this.menuIcon = element} class={"menuIcon"}
-						 onClick={() => this.toggleMobileMenu()}>
-						<span class={"bar1"}></span>
-						<span class={"bar2"}></span>
-						<span class={"bar3"}></span>
-					</div>
-				</div>
-			</nav>,
-			<div class={"overlay-menu"} ref={(element: HTMLElement) => this.overlayMenu = element}>
-				<ul id={"mobile-menu"} ref={(element: HTMLElement) => this.mobileMenu = element}>
+	@Listen('window:scroll')
+	bodyScroll() {
+		if(this.fixedScroll)
+		{
+			var scrollState = document.documentElement.scrollTop || document.body.scrollTop;
 
-				</ul>
-			</div>
-		]);
+			if(scrollState == 0)
+			{
+
+			} else if(scrollState > this.lastScrollState) {
+				this.navElement.style.transform = 'translateY(-100%)';
+			} else {
+				this.navElement.style.transform = 'translateY(0%)';
+			}
+
+			this.lastScrollState = scrollState <= 0 ? 0 : scrollState;
+		}
 	}
 }

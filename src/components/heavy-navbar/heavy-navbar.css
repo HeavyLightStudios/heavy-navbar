@@ -11,7 +11,7 @@
     --heavy-navbar-a-font-size: 0.9em;
     --heavy-navbar-a-font-family: Arial, Helvetica, sans-serif;
 
-    --heavy-navbar-a-mobile-font-size: 1.8em;
+    --heavy-navbar-mobile-a-font-size: 1.8em;
 }
 
 nav {
@@ -27,7 +27,7 @@ nav {
 
 .navbar-wrapper {
     margin: auto;
-    text-align: center;
+    text-align: right;
     width: 70%;
 }
 
@@ -62,7 +62,6 @@ ul {
     display: inline-block;
     float: right;
     list-style: none;
-    /* margin-right: 14px; */
     margin-top: -2px;
     text-align: right;
     transition: transform 0.5s ease-out;
@@ -98,6 +97,14 @@ a, ::slotted(a) {
     text-transform: var(--heavy-navbar-text-transform);
     transition: all 0.5s ease;
     -webkit-transition: all 0.5s ease;
+}
+
+a:active, ::slotted(a:active) {
+    color: var(--heavy-navbar-hover-color);
+}
+
+a.active, ::slotted(a.active) {
+    color: var(--heavy-navbar-hover-color);
 }
 
 a:hover, ::slotted(a:hover) {
@@ -143,9 +150,9 @@ a:hover:after, ::slotted(a:hover:after) {
     .menuIcon {
         display: inline-block;
         cursor: pointer;
-        position: fixed;
-        right: 28px;
-        top: calc(var(--heavy-navbar-height) / 2 - 10px);
+        position: relative;
+        top: 10px;
+        right: 25px;
         height: 23px;
         width: 20px;
         z-index: 20;
@@ -206,7 +213,7 @@ a:hover:after, ::slotted(a:hover:after) {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     margin-right: 15px;
