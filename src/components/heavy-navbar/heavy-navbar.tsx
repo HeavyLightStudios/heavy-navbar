@@ -1,5 +1,6 @@
-import {Component, Listen, Prop, State} from '@stencil/core';
-import {MenuItem} from './interfaces/menuItem';
+import { Component, Listen, Prop, State } from '@stencil/core';
+import { MenuItem } from './interfaces/menuItem';
+
 
 @Component({
 	tag: 'heavy-navbar',
@@ -13,10 +14,12 @@ export class HeavyNavbar {
 	@State() overlayMenu: HTMLElement;
 	@State() desktopMenu: HTMLElement;
 	@State() mobileMenu: HTMLElement;
+	@State() navElement: HTMLElement;
 
 	@Prop({reflectToAttr: true}) menuItems: string = null;
 	@Prop({reflectToAttr: true}) itemCount: number;
 	@Prop({reflectToAttr: true}) logo: string = null;
+	@Prop({reflectToAttr: true}) position: string = 'fixed';
 
 	componentWillLoad() {
 		this.innerMenuItems = JSON.parse(this.menuItems);
@@ -24,6 +27,45 @@ export class HeavyNavbar {
 
 	componentDidLoad() {
 		this.moveMenu();
+
+		// Set Navbar Set
+		switch (this.position) {
+			case 'fixed':
+				this.navElement.style.position = 'fixed';
+				break;
+			case 'fixedScroll':
+				this.navElement.style.position = 'fixed';
+				break;
+			case 'scroll':
+				this.navElement.style.position = 'absolute';
+				break;
+			default:
+				throw new Error("Position information is invalid. Can be set to: 'fixed', 'fixedScroll', 'scroll'");
+		}
+	}
+
+	render() {
+		return ([
+			<nav ref={(element: HTMLElement) => this.navElement = element}>
+				<div class={"navbar-wrapper"}>
+					{this.createLogo()}
+					<ul id={"desktop-menu"} ref={(element: HTMLElement) => this.desktopMenu = element}>
+						{this.createMenuItems()}
+					</ul>
+					<div ref={(element: HTMLElement) => this.menuIcon = element} class={"menuIcon"}
+						 onClick={() => this.toggleMobileMenu()}>
+						<span class={"bar1"}></span>
+						<span class={"bar2"}></span>
+						<span class={"bar3"}></span>
+					</div>
+				</div>
+			</nav>,
+			<div class={"overlay-menu"} ref={(element: HTMLElement) => this.overlayMenu = element}>
+				<ul id={"mobile-menu"} ref={(element: HTMLElement) => this.mobileMenu = element}>
+
+				</ul>
+			</div>
+		]);
 	}
 
 
@@ -80,29 +122,5 @@ export class HeavyNavbar {
 				this.desktopMenu.appendChild(this.mobileMenu.childNodes[0]);
 			}
 		}
-	}
-
-	render() {
-		return ([
-			<nav>
-				<div class={"navbar-wrapper"}>
-					{this.createLogo()}
-					<ul id={"desktop-menu"} ref={(element: HTMLElement) => this.desktopMenu = element}>
-						{this.createMenuItems()}
-					</ul>
-					<div ref={(element: HTMLElement) => this.menuIcon = element} class={"menuIcon"}
-						 onClick={() => this.toggleMobileMenu()}>
-						<span class={"bar1"}></span>
-						<span class={"bar2"}></span>
-						<span class={"bar3"}></span>
-					</div>
-				</div>
-			</nav>,
-			<div class={"overlay-menu"} ref={(element: HTMLElement) => this.overlayMenu = element}>
-				<ul id={"mobile-menu"} ref={(element: HTMLElement) => this.mobileMenu = element}>
-
-				</ul>
-			</div>
-		]);
 	}
 }
