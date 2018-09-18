@@ -28,6 +28,7 @@ declare global {
       'itemCount': number;
       'logo': string;
       'menuItems': string;
+      'position': string;
     }
   }
 
@@ -53,6 +54,7 @@ declare global {
       'itemCount'?: number;
       'logo'?: string;
       'menuItems'?: string;
+      'position'?: string;
     }
   }
 
