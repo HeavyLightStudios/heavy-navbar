@@ -21,6 +21,9 @@ export class HeavyNavbar {
 	@Prop({reflectToAttr: true}) logo: string = null;
 	@Prop({reflectToAttr: true}) position: string = 'fixed';
 
+	private lastScrollState: number = 0;
+	private fixedScroll: boolean = false;
+
 	componentWillLoad() {
 		this.innerMenuItems = JSON.parse(this.menuItems);
 	}
@@ -33,14 +36,18 @@ export class HeavyNavbar {
 			case 'fixed':
 				this.navElement.style.position = 'fixed';
 				break;
-			case 'fixedScroll':
+			case 'fixed-scroll':
 				this.navElement.style.position = 'fixed';
+				this.navElement.style.webkitTransition = "transform 0.2s ease-out";
+				this.navElement.style.transition = "transform 0.2s ease-out";
+				this.navElement.style.transform = 'translateY(0%)';
+				this.fixedScroll = true;
 				break;
 			case 'scroll':
 				this.navElement.style.position = 'absolute';
 				break;
 			default:
-				throw new Error("Position information is invalid. Can be set to: 'fixed', 'fixedScroll', 'scroll'");
+				throw new Error("Position information is invalid. Can be set to: 'fixed', 'fixed-scroll', 'scroll'");
 		}
 	}
 
@@ -54,9 +61,9 @@ export class HeavyNavbar {
 					</ul>
 					<div ref={(element: HTMLElement) => this.menuIcon = element} class={"menuIcon"}
 						 onClick={() => this.toggleMobileMenu()}>
-						<span class={"bar1"}></span>
-						<span class={"bar2"}></span>
-						<span class={"bar3"}></span>
+						<span class={"bar1"} />
+						<span class={"bar2"} />
+						<span class={"bar3"} />
 					</div>
 				</div>
 			</nav>,
@@ -121,6 +128,25 @@ export class HeavyNavbar {
 			while (this.mobileMenu.children.length > 0) {
 				this.desktopMenu.appendChild(this.mobileMenu.childNodes[0]);
 			}
+		}
+	}
+
+	@Listen('window:scroll')
+	bodyScroll() {
+		if(this.fixedScroll)
+		{
+			var scrollState = document.documentElement.scrollTop || document.body.scrollTop;
+
+			if(scrollState == 0)
+			{
+
+			} else if(scrollState > this.lastScrollState) {
+				this.navElement.style.transform = 'translateY(-100%)';
+			} else {
+				this.navElement.style.transform = 'translateY(0%)';
+			}
+
+			this.lastScrollState = scrollState <= 0 ? 0 : scrollState;
 		}
 	}
 }
