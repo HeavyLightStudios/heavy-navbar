@@ -11,7 +11,7 @@
     --heavy-navbar-a-font-size: 0.9em;
     --heavy-navbar-a-font-family: Arial, Helvetica, sans-serif;
 
-    --heavy-navbar-a-mobile-font-size: 1.8em;
+    --heavy-navbar-mobile-a-font-size: 1.8em;
 }
 
 nav {
@@ -62,7 +62,6 @@ ul {
     display: inline-block;
     float: right;
     list-style: none;
-    /* margin-right: 14px; */
     margin-top: -2px;
     text-align: right;
     transition: transform 0.5s ease-out;
@@ -98,6 +97,14 @@ a, ::slotted(a) {
     text-transform: var(--heavy-navbar-text-transform);
     transition: all 0.5s ease;
     -webkit-transition: all 0.5s ease;
+}
+
+a:active, ::slotted(a:active) {
+    color: var(--heavy-navbar-hover-color);
+}
+
+a.active, ::slotted(a.active) {
+    color: var(--heavy-navbar-hover-color);
 }
 
 a:hover, ::slotted(a:hover) {

@@ -30,6 +30,7 @@ export class HeavyNavbar {
 
 	componentDidLoad() {
 		this.moveMenu();
+		this.setActiveMenuItem();
 
 		// Set Navbar Set
 		switch (this.position) {
@@ -81,11 +82,11 @@ export class HeavyNavbar {
 
 		if (this.menuItems != null) {
 			this.innerMenuItems.map(menuItem => {
-				htmlItems.push(<li><a href={menuItem.url}>{menuItem.name}</a></li>)
+				htmlItems.push(<li><a href={menuItem.url} onClick={ (event: UIEvent) => this.menuClick(event)}>{menuItem.name}</a></li>)
 			});
 		} else {
 			for (var i = 0; i < this.itemCount; i++) {
-				htmlItems.push(<li>
+				htmlItems.push(<li onClick={ (event: UIEvent) => this.menuClick(event)}>
 					<slot name={'item-' + (i + 1)}/>
 				</li>)
 			}
@@ -112,6 +113,25 @@ export class HeavyNavbar {
 		} else {
 			this.overlayMenu.style.transform = 'translateX(-100%)';
 			this.overlayMenu.style.transition = 'transform 0.4s ease-out';
+		}
+	}
+
+	menuClick(ev) {
+		var activeElements = document.getElementsByClassName('active');
+		for(var i = 0; i < activeElements.length; i++) {
+			activeElements[i].classList.remove('active');
+		}
+		ev.srcElement.classList.add('active');
+	}
+
+	setActiveMenuItem() {
+		var url = document.location.href;
+		var menuItems = document.getElementsByTagName('a');
+		for (var i = 0; i < menuItems.length; i++) {
+			var anchorMenuItem = menuItems[i] as HTMLAnchorElement;
+			if(anchorMenuItem.href == url) {
+				menuItems[i].classList.add('active');
+			}
 		}
 	}
 
