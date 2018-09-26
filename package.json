@@ -25,9 +25,9 @@
   "author": "Heavy Light Studios Team",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/HeavyLightStudios/hls-web-components"
+    "url": "https://github.com/HeavyLightStudios/heavy-navbar/issues"
   },
-  "homepage": "https://gitlab.com/HeavyLightStudios/hls-web-components/tree/master/heavy-navbar",
+  "homepage": "https://github.com/HeavyLightStudios/heavy-navbar",
   "jest": {
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
