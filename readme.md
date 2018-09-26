@@ -1,3 +1,22 @@
+<!--
+```
+<custom-element-demo>
+  <template>
+    <script src='https://unpkg.com/heavy-navbar@0.0.6/dist/heavynavbar.js'></script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<heavy-navbar item-count="4">
+    <a href="/" slot="item-1">Home</a>
+    <a href="/about" slot="item-2">About</a>
+    <a href="/blog" slot="item-3">Blog</a>
+    <a href="/contact" slot="item-4">Contact</a>
+</heavy-navbar>
+```
+
 # heavy-navbar
 
 heavy-navbar is a responsive menu component built with customization in mind.
