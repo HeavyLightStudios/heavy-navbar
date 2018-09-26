@@ -26,6 +26,13 @@
     "type": "git",
     "url": "https://github.com/HeavyLightStudios/heavy-navbar.git"
   },
+  "keywords": [
+    "web-components",
+    "toolbar",
+    "stenciljs",
+    "responsive",
+    "navigation"
+  ],
   "author": "Heavy Light Studios Team",
   "license": "MIT",
   "bugs": {

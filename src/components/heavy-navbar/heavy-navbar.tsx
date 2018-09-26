@@ -110,9 +110,13 @@ export class HeavyNavbar {
 		if (this.menuIcon.classList.contains('opened')) {
 			this.overlayMenu.style.transform = 'translateX(0%)';
 			this.overlayMenu.style.transition = 'transform 0.4s ease-out';
+			document.body.style.position = "fixed";
+			document.documentElement.style.position = "fixed";
 		} else {
 			this.overlayMenu.style.transform = 'translateX(-100%)';
 			this.overlayMenu.style.transition = 'transform 0.4s ease-out';
+			document.body.style.position = null;
+			document.documentElement.style.position = null;
 		}
 	}
 
@@ -153,7 +157,7 @@ export class HeavyNavbar {
 
 	@Listen('window:scroll')
 	bodyScroll() {
-		if(this.fixedScroll)
+		if(this.fixedScroll && !this.menuIcon.classList.contains('opened'))
 		{
 			var scrollState = document.documentElement.scrollTop || document.body.scrollTop;
 

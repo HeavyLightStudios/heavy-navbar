@@ -2,7 +2,7 @@
 ```
 <custom-element-demo>
   <template>
-    <script src='https://unpkg.com/heavy-navbar@0.0.6/dist/heavynavbar.js'></script>
+    <script src='https://unpkg.com/heavy-navbar@0.0.7/dist/heavynavbar.js'></script>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
@@ -30,7 +30,7 @@ heavy-navbar is a responsive menu component built with customization in mind.
 `heavy-navbar` can be added to the head of your html document with the following script tag
 
 ```html
-<script src='https://unpkg.com/heavy-navbar@0.0.4/dist/heavynavbar.js'></script>
+<script src='https://unpkg.com/heavy-navbar@0.0.7/dist/heavynavbar.js'></script>
 ```
 
 The latest version can always be used using the following tag (Please note that using the latest tag could contain breaking changes)
