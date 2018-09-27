@@ -126,6 +126,9 @@ export class HeavyNavbar {
 			activeElements[i].classList.remove('active');
 		}
 		ev.srcElement.classList.add('active');
+		if(this.mobileMenu.children.length > 0) {
+			this.toggleMobileMenu();
+		}
 	}
 
 	setActiveMenuItem() {
