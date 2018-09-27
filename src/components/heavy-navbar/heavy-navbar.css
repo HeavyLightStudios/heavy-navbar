@@ -47,9 +47,14 @@ nav {
     float: left;
     margin-left: 28px;
     font-size: 1.5em;
-    height: var(--heavy-navbar-height);
+    height: calc(var(--heavy-navbar-height) - 10px);
     letter-spacing: 1px;
     text-transform: var(--heavy-navbar-text-transform);
+}
+
+.logo-image {
+    max-height: 100%;
+    width: auto;
 }
 
 @media (max-width: 768px) {
