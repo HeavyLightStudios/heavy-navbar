@@ -2,7 +2,7 @@
 ```
 <custom-element-demo>
   <template>
-    <script src='https://unpkg.com/heavy-navbar@0.0.7/dist/heavynavbar.js'></script>
+    <script src='https://unpkg.com/heavy-navbar@0.0.8/dist/heavynavbar.js'></script>
     <heavy-navbar item-count="4">
         <a href="#" slot="item-1">Home</a>
         <a href="#about" slot="item-2">About</a>
