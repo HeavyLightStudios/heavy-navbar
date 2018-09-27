@@ -100,7 +100,7 @@ export class HeavyNavbar {
 			return;
 		} else {
 			return <div class={"logo"}>
-				<a href="/">Logo</a>
+				<a href="/"><img class={"logo-image"} src={this.logo}/></a>
 			</div>;
 		}
 	}
