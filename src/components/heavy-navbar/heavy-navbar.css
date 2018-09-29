@@ -104,6 +104,18 @@ a, ::slotted(a) {
     -webkit-transition: all 0.5s ease;
 }
 
+.overlay-menu a, .overlay-menu ::slotted(a) {
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    line-height: var(--heavy-navbar-height);
+}
+
+.overlay-menu ul {
+    width: 100%;
+}
+
 a:active, ::slotted(a:active) {
     color: var(--heavy-navbar-hover-color);
 }
@@ -215,13 +227,13 @@ a:hover:after, ::slotted(a:hover:after) {
 .overlay-menu {
     background: var(--heavy-navbar-background);
     color: var(--heavy-navbar-color);
-    display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    top: 0;
+    position: fixed;
+    top: var(--heavy-navbar-height);
     left: 0;
     margin-right: 15px;
+    padding-top: 15px;
     transform: translateX(-100%);
     width: 100vw;
     height: 100vh;
