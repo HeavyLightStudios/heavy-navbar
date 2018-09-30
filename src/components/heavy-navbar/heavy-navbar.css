@@ -17,7 +17,6 @@
 nav {
     background-color: var(--heavy-navbar-background);
     color: var(--heavy-navbar-color);
-    position: fixed;
     top: 0;
     height: var(--heavy-navbar-height);
     line-height: var(--heavy-navbar-height);
