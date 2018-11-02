@@ -19,7 +19,7 @@ export class HeavyNavbar {
 	@Prop({reflectToAttr: true}) menuItems: string = null;
 	@Prop({reflectToAttr: true}) itemCount: number;
 	@Prop({reflectToAttr: true}) logo: string = null;
-	@Prop({reflectToAttr: true}) position: string = 'fixed';
+	@Prop({reflectToAttr: true}) position: string = 'scroll';
 
 	private lastScrollState: number = 0;
 	private fixedScroll: boolean = false;
@@ -45,7 +45,7 @@ export class HeavyNavbar {
 				this.fixedScroll = true;
 				break;
 			case 'scroll':
-				this.navElement.style.position = 'absolute';
+
 				break;
 			default:
 				throw new Error("Position information is invalid. Can be set to: 'fixed', 'fixed-scroll', 'scroll'");
