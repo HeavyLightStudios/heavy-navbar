@@ -56,7 +56,9 @@ export class HeavyNavbar {
 		return ([
 			<nav ref={(element: HTMLElement) => this.navElement = element}>
 				<div class={"navbar-wrapper"}>
-					{this.createLogo()}
+					<div class={"logo"}>
+						{this.createLogo()}
+					</div>
 					<ul id={"desktop-menu"} ref={(element: HTMLElement) => this.desktopMenu = element}>
 						{this.createMenuItems()}
 					</ul>
@@ -97,11 +99,9 @@ export class HeavyNavbar {
 
 	createLogo(): any {
 		if (this.logo == null) {
-			return;
+			return <slot name={'hero'}/>;
 		} else {
-			return <div class={"logo"}>
-				<a href="/"><img class={"logo-image"} src={this.logo}/></a>
-			</div>;
+			return <a href="/"><img class={"logo-image"} src={this.logo}/></a>;
 		}
 	}
 
