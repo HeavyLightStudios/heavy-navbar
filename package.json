@@ -1,6 +1,6 @@
 {
   "name": "heavy-navbar",
-  "version": "0.0.12-2",
+  "version": "0.0.12-3",
   "description": "navbar Web Component created by Heavy Light Studios",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
