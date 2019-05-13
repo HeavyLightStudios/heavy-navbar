@@ -2,8 +2,9 @@
 ```
 <custom-element-demo>
   <template>
-    <script src='https://unpkg.com/heavy-navbar@0.0.9/dist/heavynavbar.js'></script>
+    <script src='https://unpkg.com/heavy-navbar@0.0.12-4/dist/heavynavbar.js'></script>
     <heavy-navbar item-count="4">
+        <h1 slot="hero">Title</h1>
         <a href="#" slot="item-1">Home</a>
         <a href="#about" slot="item-2">About</a>
         <a href="#blog" slot="item-3">Blog</a>
@@ -27,7 +28,7 @@ heavy-navbar is a responsive menu component built with customization in mind.
 `heavy-navbar` can be added to the head of your html document with the following script tag
 
 ```html
-<script src='https://unpkg.com/heavy-navbar@0.0.9/dist/heavynavbar.js'></script>
+<script src='https://unpkg.com/heavy-navbar@0.0.12-4/dist/heavynavbar.js'></script>
 ```
 
 The latest version can always be used using the following tag (Please note that using the latest tag could contain breaking changes)
@@ -62,13 +63,12 @@ once installed you can add a script tag to the head of your html document
 <script src='node_modules/heavy-navbar/dist/heavynavbar.js'></script>
 ```
 
-
 ## Usage
 
 To put a blank navbar into your page ad the following HTML tag
 
 ```html
-<heavy-navbar></heavy-navbar> 
+<heavy-navbar></heavy-navbar>
 ```
 
 Adding menu bar items can be done in one of two ways. Slot based or Property based
@@ -84,6 +84,7 @@ then adding the anchor tags inside the root tag. Each anchor tag needs a `slot` 
     <a href="#contact" slot="item-4">Contact</a>
 </heavy-navbar>
 ```
+
 Property based insertion takes a json array with both a name and a url property. This is done by setting the `menuItems` property on heavy-navbar.
 
 ```javascript
@@ -113,16 +114,17 @@ A JSON array can also be passed in via the `menu-items` attribute
 ## Appearance
 
 `heavy-navbar` uses css variables to expose options to change. To make changes to `heavy-navbar` you can add styling to your page's css file.
- 
+
 ```css
 heavy-navbar {
-	--heavy-navbar-background: #ffffff;
-	--heavy-navbar-color: #000000;
-	--heavy-navbar-hover-color: #333333;
+    --heavy-navbar-background: #ffffff;
+    --heavy-navbar-color: #000000;
+    --heavy-navbar-hover-color: #333333;
 }
 ```
 
 ## Position
+
 `heavy-navbar` can be positioned in multiple ways.
 
 - **Fixed:** will be fixed to the top of the screen.
@@ -135,6 +137,7 @@ heavy-navbar {
     <a href="#contact" slot="item-4">Contact</a>
 </heavy-navbar>
 ```
+
 - **Fixed with scroll:** like fixed will be fixed to the top of the page, but will auto hide on scroll.
 
 ```html
@@ -145,6 +148,7 @@ heavy-navbar {
     <a href="#contact" slot="item-4">Contact</a>
 </heavy-navbar>
 ```
+
 - **Scroll:** Will scroll with the page. 
 
 ```html
@@ -156,11 +160,27 @@ heavy-navbar {
 </heavy-navbar>
 ```
 
-## Logo
-Adding a logo in as easy as passing a path in via the `logo` attribute.
+## Hero
+
+Adding text to the hero space is as simple as adding the element to the `hero` slot
+
 ```html
-<heavy-navbar item-count="4" position="scroll" logo="/images/logo.png">    
-	<a href="#" slot="item-1">Home</a>
+<heavy-navbar item-count="4" position="scroll">  
+    <h1 slot="hero">Title</h1>  
+    <a href="#" slot="item-1">Home</a>
+    <a href="#about" slot="item-2">About</a>
+    <a href="#blog" slot="item-3">Blog</a>
+    <a href="#contact" slot="item-4">Contact</a>
+</heavy-navbar>
+```
+
+## Logo
+
+Adding a logo in as easy as passing a path in via the `logo` attribute.
+
+```html
+<heavy-navbar item-count="4" position="scroll" logo="/images/logo.png">
+    <a href="#" slot="item-1">Home</a>
     <a href="#about" slot="item-2">About</a>
     <a href="#blog" slot="item-3">Blog</a>
     <a href="#contact" slot="item-4">Contact</a>
