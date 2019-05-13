@@ -91,7 +91,7 @@ li {
     display: inline-block;
 }
 
-a, ::slotted(a) {
+::slotted(*[slot^="item-"]) {
     color: var(--heavy-navbar-color);
     display: block;
     font-size: var(--heavy-navbar-a-font-size);
@@ -106,7 +106,7 @@ a, ::slotted(a) {
     -webkit-transition: all 0.5s ease;
 }
 
-.overlay-menu a, .overlay-menu ::slotted(a) {
+.overlay-menu ::slotted(*[slot^="item-"]) {
     display: inline-block;
     width: 100%;
     padding: 0;
@@ -118,15 +118,11 @@ a, ::slotted(a) {
     width: 100%;
 }
 
-a:active, ::slotted(a:active) {
+::slotted(*[slot*="item-"].active) {
     color: var(--heavy-navbar-hover-color);
 }
 
-a.active, ::slotted(a.active) {
-    color: var(--heavy-navbar-hover-color);
-}
-
-a:hover, ::slotted(a:hover) {
+::slotted(*[slot*="item-"]:hover) {
     /* border-bottom: 1px solid rgb(28, 121, 184); */
     color: var(--heavy-navbar-hover-color);
     transition: all 1s ease;
@@ -134,7 +130,7 @@ a:hover, ::slotted(a:hover) {
 }
 
 /* Animated Bottom Line */
-a:before, a:after, ::slotted(a:before), ::slotted(a:after) {
+::slotted(*[slot*="item-"]):before, ::slotted(*[slot*="item-"]):after {
     content: '';
     position: absolute;
     width: 0%;
@@ -143,26 +139,10 @@ a:before, a:after, ::slotted(a:before), ::slotted(a:after) {
     background: var(--heavy-navbar-hover-color);
 }
 
-a:before, ::slotted(a:before) {
-    left: 0;
-    transition: 0.5s;
-}
-
-a:after, ::slotted(a:after) {
+::slotted(*[slot*="item-"]):after {
     background: var(--heavy-navbar-hover-color);
     right: 0;
     /* transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1); */
-}
-
-a:hover:before, ::slotted(a:hover:before) {
-    background: var(--heavy-navbar-hover-color);
-    width: 100%;
-    transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-a:hover:after, ::slotted(a:hover:after) {
-    background: transparent;
-    width: 100%;
 }
 
 .hero, ::slotted(.hero){
