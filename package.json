@@ -1,6 +1,6 @@
 {
   "name": "heavy-navbar",
-  "version": "0.0.10-0",
+  "version": "0.0.13",
   "description": "navbar Web Component created by Heavy Light Studios",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
@@ -19,9 +19,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@stencil/core": "0.18.0",
+    "@stencil/core": "^0.18.1",
     "@types/jest": "^23.3.14",
-    "jest": "^24.5.0"
+    "jest": "^24.9.0"
   },
   "repository": {
     "type": "git",
