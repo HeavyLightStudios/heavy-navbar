@@ -1,4 +1,4 @@
-import { Component, Listen, Prop, State } from '@stencil/core';
+import { Component, Listen, Prop, State, h } from '@stencil/core';
 import { MenuItem } from './interfaces/menuItem';
 
 
@@ -77,8 +77,8 @@ export class HeavyNavbar {
 	}
 
 
-	createMenuItems(): Array<JSX.Element> {
-		var htmlItems: Array<JSX.Element> = [];
+	createMenuItems(): Array<Element> {
+		var htmlItems: Array<Element> = [];
 
 		if (this.menuItems != null) {
 			this.innerMenuItems.map(menuItem => {
@@ -110,13 +110,9 @@ export class HeavyNavbar {
 		if (this.menuIcon.classList.contains('opened')) {
 			this.overlayMenu.style.transform = 'translateX(0%)';
 			this.overlayMenu.style.transition = 'transform 0.4s ease-out';
-			document.body.style.position = "fixed";
-			document.documentElement.style.position = "fixed";
 		} else {
 			this.overlayMenu.style.transform = 'translateX(-100%)';
 			this.overlayMenu.style.transition = 'transform 0.4s ease-out';
-			document.body.style.position = null;
-			document.documentElement.style.position = null;
 		}
 	}
 
@@ -142,7 +138,7 @@ export class HeavyNavbar {
 		}
 	}
 
-	@Listen('window:resize')
+	@Listen('resize', { target: 'window' })
 	moveMenu() {
 		if (window.innerWidth <= 638 && this.desktopMenu.children.length != 0) {
 			while (this.desktopMenu.children.length > 0) {
@@ -158,7 +154,7 @@ export class HeavyNavbar {
 		}
 	}
 
-	@Listen('window:scroll')
+	@Listen('scroll', { target: 'window' })
 	bodyScroll() {
 		if(this.fixedScroll && !this.menuIcon.classList.contains('opened'))
 		{

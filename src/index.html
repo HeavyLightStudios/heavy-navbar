@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>heavy-navbar - Heavy Light Studios</title>
     <link href="/build/heavynavbar.css" rel="stylesheet">
-    <script src="/build/heavynavbar.js"></script>
+    <script type="module" src="/build/heavynavbar.esm.js"></script>
+    <script nomodule src="/build/heavynavbar.js"></script>
 </head>
 <body>
 
@@ -15,9 +16,9 @@
 <!--{"name":"Contact","url":"#contact"}]'>-->
 <!--</heavy-navbar>-->
 
-<heavy-navbar logo="/images/logo.png" item-count="4">
+<heavy-navbar logo="/images/logo.png" item-count="4" position="scroll">
     <a href="/" slot="item-1">Home</a>
-    <a href=#About slot="item-2">About</a>
+    <a href="#About" slot="item-2">About</a>
     <a href="#Blog" slot="item-3">Blog</a>
     <a href="#Contact" slot="item-4">Contact</a>
 </heavy-navbar>

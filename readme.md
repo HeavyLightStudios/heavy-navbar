@@ -159,8 +159,8 @@ heavy-navbar {
 ## Logo
 Adding a logo in as easy as passing a path in via the `logo` attribute.
 ```html
-<heavy-navbar item-count="4" position="scroll" logo="/images/logo.png">    
-	<a href="#" slot="item-1">Home</a>
+<heavy-navbar item-count="4" position="scroll" logo="/images/logo.png">
+    <a href="#" slot="item-1">Home</a>
     <a href="#about" slot="item-2">About</a>
     <a href="#blog" slot="item-3">Blog</a>
     <a href="#contact" slot="item-4">Contact</a>
