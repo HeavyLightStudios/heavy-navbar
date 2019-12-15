@@ -1,8 +1,8 @@
 {
   "name": "heavy-navbar",
   "version": "0.0.14-0",
-  "description": "navbar Web Component created by Heavy Light Studios",
-  "module": "dist/esm/index.js",
+  "description": "Responsive navigation bar web component",
+  "module": "dist/index.mjs",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
