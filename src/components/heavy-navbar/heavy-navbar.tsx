@@ -16,10 +16,10 @@ export class HeavyNavbar {
 	@State() mobileMenu: HTMLElement;
 	@State() navElement: HTMLElement;
 
-	@Prop({reflectToAttr: true}) menuItems: string = null;
-	@Prop({reflectToAttr: true}) itemCount: number;
-	@Prop({reflectToAttr: true}) logo: string = null;
-	@Prop({reflectToAttr: true}) position: string = 'scroll';
+	@Prop({reflect: true}) menuItems: string = null;
+	@Prop({reflect: true}) itemCount: number;
+	@Prop({reflect: true}) logo: string = null;
+	@Prop({reflect: true}) position: string = 'scroll';
 
 	private lastScrollState: number = 0;
 	private fixedScroll: boolean = false;
