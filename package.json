@@ -1,6 +1,6 @@
 {
   "name": "heavy-navbar",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Responsive navigation bar web component",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
@@ -18,10 +18,10 @@
     "postversion": "git push --tags"
   },
   "devDependencies": {
-    "@stencil/core": "^2.5.2",
+    "@stencil/core": "^2.6.0",
     "@stencil/react-output-target": "^0.0.9",
-    "@types/jest": "^26.0.23",
-    "jest": "^26.6.3"
+    "@types/jest": "^27.0.1",
+    "jest": "^27.0.6"
   },
   "repository": {
     "type": "git",
