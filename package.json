@@ -18,10 +18,10 @@
     "postversion": "git push --tags"
   },
   "devDependencies": {
-    "@stencil/core": "^2.6.0",
-    "@stencil/react-output-target": "^0.0.9",
-    "@types/jest": "^27.0.1",
-    "jest": "^27.0.6"
+    "@stencil/core": "^2.10.0",
+    "@stencil/react-output-target": "^0.1.0",
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1"
   },
   "repository": {
     "type": "git",
