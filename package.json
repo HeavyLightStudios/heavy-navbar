@@ -1,6 +1,6 @@
 {
   "name": "heavy-navbar",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Responsive navigation bar web component",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
